@@ -1,9 +1,12 @@
+from typing import Dict
+
 import geopandas as gpd
 import pyproj
 import shapely
 from shapely import MultiPolygon
 
-def save2geojson(all_defined_space_lists:dict, undefined_space_within_bbox:MultiPolygon, fname:str, local_crs:pyproj.crs.crs.CRS) -> None:
+
+def save2geojson(all_defined_space_lists: Dict, undefined_space_within_bbox: MultiPolygon, fname: str, local_crs: pyproj.crs.crs.CRS) -> None:
     """saves given elements and geometries to a GeoJSON with EPSG 4326 because it is default for GeoJSON
 
     Args:
@@ -11,10 +14,10 @@ def save2geojson(all_defined_space_lists:dict, undefined_space_within_bbox:Multi
         undefined_space_within_bbox (MultiPolygon): MultiPolygon of undefined space within bounding box
         fname (str): filename / path to save the GeoJSoN to
         local_crs (pyproj.crs.crs.CRS, optional): local CRS that was used for preceding analsis, required for transformation back to EPSG 4326.
-    """    
-    def write_info_to_dict(all_defined_space_lists:dict, undefined_space_within_bbox:MultiPolygon) -> dict:
+    """
+    def write_info_to_dict(all_defined_space_lists: Dict, undefined_space_within_bbox: MultiPolygon) -> Dict:
         projector = pyproj.Transformer.from_crs(local_crs, pyproj.CRS.from_epsg(4326), always_xy=True)
-        geometries, access_types, space_types, osmids, osmtags = [],[],[],[],[]
+        geometries, access_types, space_types, osmids, osmtags = [], [], [], [], []
         for list_name, elements in all_defined_space_lists.items():
             if list_name == 'dataset':
                 for e in elements:
@@ -53,8 +56,14 @@ def save2geojson(all_defined_space_lists:dict, undefined_space_within_bbox:Multi
         space_types.append('undefined space')
         osmids.append(None)
         osmtags.append(None)
-        data = {'geometry': geometries, 'access': access_types, 'space_type':space_types, 'osmid':osmids, 'tags': osmtags}
+        data = {
+            'geometry': geometries,
+            'access': access_types,
+            'space_type': space_types,
+            'osmid': osmids,
+            'tags': osmtags,
+        }
         return data
     data = write_info_to_dict(all_defined_space_lists, undefined_space_within_bbox)
     gdf = gpd.GeoDataFrame(data)
-    gdf.to_file(fname, driver = 'GeoJSON')
+    gdf.to_file(fname, driver='GeoJSON')

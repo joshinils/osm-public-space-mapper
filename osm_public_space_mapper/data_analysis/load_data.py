@@ -1,9 +1,11 @@
+from typing import List
+
 import esy.osm.shape
-import pickle
 
 from osm_public_space_mapper.utils.osm_element import OsmElement
 
-def load_elements(filepath:str) -> list[OsmElement]:
+
+def load_elements(filepath: str) -> List[OsmElement]:
     """Loads OSM elements from .osm.pbf file and returns them in a list of OsmElements
 
     Args:

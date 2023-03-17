@@ -1,11 +1,18 @@
+from typing import Dict, List, TypeAlias, Union
+
 import shapely
-from shapely.geometry import LinearRing, Polygon, MultiPolygon, Point, MultiPoint, LineString, MultiLineString
-ShapelyGeometry = LinearRing|Polygon|MultiPolygon|Point|MultiPoint|LineString|MultiLineString
+from shapely.geometry import (
+    LinearRing, LineString, MultiLineString, MultiPoint, MultiPolygon, Point,
+    Polygon
+)
 
-from osm_public_space_mapper.utils.osm_element import OsmElement
 from osm_public_space_mapper.utils.bounding_box import BoundingBox
+from osm_public_space_mapper.utils.osm_element import OsmElement
 
-def load(all_defined_space_lists:dict[str,list[OsmElement|ShapelyGeometry]], bbox:BoundingBox) -> MultiPolygon:
+ShapelyGeometry: TypeAlias = Union[LinearRing, Polygon, MultiPolygon, Point, MultiPoint, LineString, MultiLineString]
+
+
+def load(all_defined_space_lists: Dict[str, List[OsmElement, ShapelyGeometry]], bbox: BoundingBox) -> MultiPolygon:
     """returns space that is not part of all defined space as a Polygon
 
     Args:
@@ -14,7 +21,7 @@ def load(all_defined_space_lists:dict[str,list[OsmElement|ShapelyGeometry]], bbo
 
     Returns:
         MultiPolygon: undefined space within BoundingBox as Polyon
-    """    
+    """
     defined_space_geometries = []
     for list_name, elements in all_defined_space_lists.items():
         for e in elements:
