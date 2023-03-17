@@ -7,7 +7,7 @@ from osm_public_space_mapper.utils.helpers import buffer_list_of_elements
 from osm_public_space_mapper.utils.osm_element import OsmElement
 
 
-def interprete_tags(elements: List[OsmElement]) -> None:
+def interpret_tags(elements: List[OsmElement]) -> None:
     """Iterates over list of OsmElements and updates access attribute to yes, no or restricted based on used tags
 
     Args:
@@ -37,7 +37,7 @@ def interprete_tags(elements: List[OsmElement]) -> None:
                             e.access = 'restricted'
 
 
-def interprete_barriers(elements: List[OsmElement]) -> None:
+def interpret_barriers(elements: List[OsmElement]) -> None:
     """iterates over list of OsmElements and sets access attribute for barriers
 
     Args:

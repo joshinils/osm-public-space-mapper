@@ -102,7 +102,7 @@ class OsmElement:
         """Returns if the element has a specific tag
 
         Args:
-            tag (str): tag that should be checked for occurence
+            tag (str): tag that should be checked for occurrence
 
         Returns:
             bool: True if the element has that tag

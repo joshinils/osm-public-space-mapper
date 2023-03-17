@@ -23,7 +23,7 @@ def load(all_defined_space_lists: Dict[str, List[OsmElement, ShapelyGeometry]], 
         MultiPolygon: undefined space within BoundingBox as Polyon
     """
     defined_space_geometries = []
-    for list_name, elements in all_defined_space_lists.items():
+    for _, elements in all_defined_space_lists.items():
         for e in elements:
             if type(e) == OsmElement:
                 defined_space_geometries.append(e.geom)

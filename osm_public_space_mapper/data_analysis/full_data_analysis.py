@@ -46,10 +46,10 @@ dataset = clean_data.drop_irrelevant_elements_based_on_tags(dataset)
 ### ANALYSING ACCESS ###
 if print_status:
     print('Interpreting tags for access')
-analyse_access.interprete_tags(dataset)
+analyse_access.interpret_tags(dataset)
 if print_status:
     print('Interpreting barriers - be patient, that may take a while.')
-analyse_access.interprete_barriers(dataset)
+analyse_access.interpret_barriers(dataset)
 if print_status:
     print('Getting inaccessible barriers')
 inaccessible_barriers = analyse_access.get_inaccessible_barriers(dataset)

@@ -65,7 +65,7 @@ def clean_geometries(elements: List[OsmElement]) -> None:
             elements (list[OsmElement]): list of OsmElements to be iterated over
 
         Note:
-            Not neccessary but helpful because esy.osm.shape saves some OSM objects as MultiPolygon with only one element
+            Not necessary but helpful because esy.osm.shape saves some OSM objects as MultiPolygon with only one element
         """
         for e in elements:
             if type(e.geom) == MultiPolygon and len(e.geom.geoms) == 1:
@@ -78,7 +78,7 @@ def clean_geometries(elements: List[OsmElement]) -> None:
             elements (list[OsmElement]): list of OsmElements to be iterated over
 
         Note:
-            Neccessary because current version of esy.osm.shape interpretes some closed ways wrongly as Polygons insted of LineStrings
+            Necessary because current version of esy.osm.shape interprets some closed ways wrongly as Polygons insted of LineStrings
         """
         def is_highway_polygon(e: OsmElement) -> bool:
             if e.has_tag('highway'):

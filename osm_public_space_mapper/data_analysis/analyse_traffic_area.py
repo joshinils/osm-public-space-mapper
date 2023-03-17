@@ -232,7 +232,7 @@ def get_traffic_areas_as_polygons(
         Args:
             elements (list[OsmElement): list of OsmElements with platform and pedestrian way elements
             inaccessible_enclosed_areas (list[Polygon | MultiPolygon]): list of earlier defined inaccessible_enclosed_areas, because traffic areas will not be accessible there
-            buildings (list[OsmElement): list of OsmElements iwth buildings
+            buildings (list[OsmElement): list of OsmElements with buildings
 
         Returns:
             List[Polygon, MultiPolygon]: list of polygon or multipolygon geomtries instead of OsmElements
